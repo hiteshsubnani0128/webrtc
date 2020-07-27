@@ -1,4 +1,4 @@
-const socket = io('ws://localhost:3000', {transports: ['websocket']});
+const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer({host:'peerjs-server.herokuapp.com', secure:true, port:3001})
 // const myPeer = new Peer(undefined, {

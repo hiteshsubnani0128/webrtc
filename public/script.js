@@ -1,12 +1,13 @@
-const socket = io('/')
+const socket = io('ws://localhost:3000', {transports: ['websocket']});
 const videoGrid = document.getElementById('video-grid')
-const myPeer = new Peer({host:'peerjs-server.herokuapp.com', secure:true, port:443})
+// const myPeer = new Peer({host:'peerjs-server.herokuapp.com', secure:true, port:3001})
+const myPeer = new Peer(undefined, {
+  host: '/',
+  port: '3001'
+})
 
+let muted = false,  userVideoStream11;
 
-let muted = false;
-function muteMe(){
-  socket.emit('hitesh', 'asd',ROOM_ID);
-}
 
 socket.on('hitesh', (msg)=>{
   console.log(msg);
@@ -19,6 +20,7 @@ navigator.mediaDevices.getUserMedia({
   video: true,
   audio: true
 }).then(stream => {
+  userVideoStream11 = stream;
   addVideoStream(myVideo, stream)
 
   myPeer.on('call', call => {
@@ -27,7 +29,7 @@ navigator.mediaDevices.getUserMedia({
     
     call.on('stream', userVideoStream => {
       addVideoStream(video, userVideoStream)
-      userVideoStream11 = video;
+      
     })
   })
 
@@ -64,4 +66,15 @@ function addVideoStream(video, stream) {
     video.play()
   })
   videoGrid.append(video);
+}
+
+
+function muteMe(){
+  userVideoStream11.getAudioTracks()[0].enabled = !userVideoStream11.getAudioTracks()[0].enabled;
+  console.log(userVideoStream11.getAudioTracks()[0].enabled);
+  socket.emit('hitesh', 'asd',ROOM_ID);
+}
+
+function hideMe(){
+  userVideoStream11.getVideoTracks()[0].enabled= !userVideoStream11.getVideoTracks()[0].enabled;
 }

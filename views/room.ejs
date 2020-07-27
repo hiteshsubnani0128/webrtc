@@ -23,18 +23,72 @@
       height: 100%;
       object-fit: cover;
     }
+    .close{
+      position: fixed;
+      bottom: 0;
+      padding: 1% 2%;
+      margin: 1%;
+      border: 0;
+      border-radius: 3%;
+    }
+    .c1{
+      right: 50%;
+      background-color: red;
+      color: white;
+    }
+    .c2{
+      background-color: lightslategray;
+      right: 40%;
+      color: white;
+    }
+    .c3{
+      background-color: lightslategray;
+      color: white;
+      right: 59%;
+    }
+    .c4{
+      border: 1px solid darkgray;
+      right: 10%;
+    }
+    .c5{
+      background-color: lightslategray;
+      color: white;
+      right: 3%;
+      padding: 1.1% 2%;
+    }
+    .msgBox{
+      position: absolute;
+      right: 5%;
+      bottom: 15%;
+      padding: 1%;
+      border: 1px solid darkgray;
+      width: 20%;
+      margin-right: 1%;
+    }
+    .rightMe{
+      text-align: right;
+    }
+
   </style>
 </head>
 <body>
   <div>
     <div id="video-grid">
     </div>
-    <button type="button" onclick="myVideo.requestPictureInPicture();myVideo.style.display='none'">popOut</button>
-    <button type="button" onclick="muteMe();">Mute All</button>
-    <button type="button" onclick="hideMe();">HideMe</button>
+    <button type="button" onclick="ovideo.requestPictureInPicture();ovideo.style.display='none'">popOut</button>
+    
   </div>
-  <div>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam perspiciatis obcaecati repellat vel ipsa ex provident fuga porro tempore, repudiandae culpa, libero nobis consequatur? Fugit voluptas perspiciatis quia commodi itaque.
+  
+
+  <div >
+    <button class="close c2" type="button" id="muteMe" onclick="muteMe();">Mute Me</button>
+    <button class="close c1" onclick="window.location.href='/'" type="button">Close</button>
+    <button class="close c3" type="button" id="videoOff" onclick="hideMe();">Video Off</button>
+    <div class="msgBox" id="msgBox">
+      
+    </div>
+    <input type="text" id="chat" class="close c4" placeholder="Enter chat to send">
+    <button type="button" onclick="sendChat()" class="close c5">Send</button>
   </div>
 </body>
 </html>

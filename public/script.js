@@ -14,6 +14,9 @@ socket.on('hitesh', (msg)=>{
   lok.setAttribute('class','rightMe');
   lok.append(msg);
   document.getElementById('msgBox').append(lok);
+  if (navigator.vibrate) {
+    navigator.vibrate(1000);
+  }
 });
 
 const myVideo = document.createElement('video')
@@ -87,6 +90,7 @@ function muteMe(){
 }
 
 function hideMe(){
+  userVideoStream11.getVideoTracks()[0].enabled = !userVideoStream11.getVideoTracks()[0].enabled;
   if(userVideoStream11.getVideoTracks()[0].enabled){
     document.getElementById('videoOff').innerText='Video Off'
   } else {

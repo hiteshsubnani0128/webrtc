@@ -7,11 +7,13 @@ const myPeer = new Peer({host:'peerjs-server.herokuapp.com', secure:true, port:4
 //   port: '3001'
 // })
 
-let muted = false,  userVideoStream11;
-
+let muted = false,  userVideoStream11, ovideo;
 
 socket.on('hitesh', (msg)=>{
-  console.log(msg);
+  let lok = document.createElement('p');
+  lok.setAttribute('class','rightMe');
+  lok.append(msg);
+  document.getElementById('msgBox').append(lok);
 });
 
 const myVideo = document.createElement('video')
@@ -30,18 +32,22 @@ navigator.mediaDevices.getUserMedia({
     
     call.on('stream', userVideoStream => {
       addVideoStream(video, userVideoStream)
-      
+      ovideo = video;
     })
   })
 
   socket.on('user-connected', userId => {
     console.log("USER CONNECTED", userId);
+    alert('newUser joined the chat');
     connectToNewUser(userId, stream)
   })
 })
 
 socket.on('user-disconnected', userId => {
-  if (peers[userId]) peers[userId].close()
+  peers[userId].close();
+  console.log('user disconnected', userId);
+  if (peers[userId]) peers[userId].close();
+  alert('A user has left the chat');
 })
 
 myPeer.on('open', id => {
@@ -72,10 +78,34 @@ function addVideoStream(video, stream) {
 
 function muteMe(){
   userVideoStream11.getAudioTracks()[0].enabled = !userVideoStream11.getAudioTracks()[0].enabled;
-  console.log(userVideoStream11.getAudioTracks()[0].enabled);
-  socket.emit('hitesh', 'asd',ROOM_ID);
+  
+  if(userVideoStream11.getAudioTracks()[0].enabled){
+    document.getElementById('muteMe').innerText='Mute Me'
+  } else {
+    document.getElementById('muteMe').innerText='Un Mute'
+  }
 }
 
 function hideMe(){
-  userVideoStream11.getVideoTracks()[0].enabled= !userVideoStream11.getVideoTracks()[0].enabled;
+  if(userVideoStream11.getVideoTracks()[0].enabled){
+    document.getElementById('videoOff').innerText='Video Off'
+  } else {
+    document.getElementById('videoOff').innerText='Video On'
+  } 
 }
+
+function sendChat(){
+  chatBox = document.getElementById('chat');
+  if(chatBox.value==""){
+    alert('Enter Something');
+  } else{
+    let lok = document.createElement('p');
+    console.log(chatBox.value);
+    socket.emit('hitesh', chatBox.value ,ROOM_ID);
+    lok.append(chatBox.value);
+    document.getElementById('msgBox').append(lok);
+    chatBox.value='';
+  }
+  console.log();
+}
+

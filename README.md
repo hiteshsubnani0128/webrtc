@@ -1,5 +1,15 @@
 # webrtc
 
-NPM Run Dev
+Check Nodejs is installed
 
-peerjs --port 3001
+node --version
+
+check npm is installed
+
+npm --version
+
+if both are ok run
+
+npm run dev
+
+visit http://localhost:3000

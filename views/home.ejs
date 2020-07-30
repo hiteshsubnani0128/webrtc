@@ -3,13 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home | Event</title>
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.5/dist/css/uikit.min.css" />
+    <style>
+        body{
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+    </style>
 </head>
 <body>
-    <form action="" method="POST">
-        <label for="room">Enter Room Name</label>
-        <input type="text" name="room" id="room">
-        <button type="submit">Enter ROOM</button>
-    </form>
+    <div class="uk-section uk-preserve-color uk-padding-large uk-padding-remove-top">
+
+        <div uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-secondary; top: 200">
+            <nav class="uk-navbar-container" uk-navbar>
+
+                <div class="uk-navbar-left">
+            
+                    <ul class="uk-navbar-nav">
+                        <li class="uk-active uk-heading-large"><a href="#">AI-Meet</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                    
+                </div>
+            
+                <div class="uk-navbar-right">
+            
+                    <ul class="uk-navbar-nav">
+                        <li class="uk-active"><a href="#">Home</a></li>
+                        <li>
+                            <a href="#">User <span uk-icon="icon:user;ratio: 1.2"> </span> </a>
+                            <div class="uk-navbar-dropdown">
+                                <ul class="uk-nav uk-navbar-dropdown-nav">
+                                    <li class="uk-active"><a href="#">Dashboard</a></li>
+                                    <li><a href="#">Profile</a></li>
+                                    <li><a href="#">Logout</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        
+                    </ul>
+            
+                </div>
+            
+            </nav>
+        </div>
+    
+        <div class="uk-section uk-secondary">
+            <div class="uk-container uk-padding-large uk-padding-remove-top">
+            
+                <div uk-grid>
+                    <div class="uk-width-1-2">
+                        <h2 class="uk-heading-divide uk-heading-bullet">Secured Video Conferencing with Machine Learning, Now free for Everyone</h2>
+                        <form class="uk-margin-medium-top uk-card uk-card-default uk-padding-small" action="" method="POST">
+                                <fieldset class="uk-fieldset">
+                                    <legend class="uk-legend ">Enter Room Code</legend>
+                            
+                                    <div class="uk-margin">
+                                        <div class="uk-inline">
+                                            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: video-camera; ratio: 1.5"> </span>
+                                            <input class="uk-input uk-width-2-2" name="room" id="room" type="text" placeholder="Enter Room code or link">
+                                        </div>
+                                    </div>
+                                    </fieldset> 
+                                   
+                                        <button class="uk-button uk-button-secondary" type="submit">Enter ROOM</button>
+                              
+                        </form>
+                    </div>
+                    <div class="uk-width-1-2 ">
+                        <img src="https://hub.umd.edu/sites/default/files/2020-04/image/ZoomBombing3_1920x1080.gif" alt="">
+                    </div>
+                </div> 
+            </div>
+           
+        </div>
+    
+    </div>
+    
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.5/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.5/dist/js/uikit-icons.min.js"></script>
 </body>
 </html>

@@ -7,8 +7,16 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script>
     const ROOM_ID = "<%= roomId %>"
+  </script>
+  <% if(user) { %>
+  <script>
     const userName = "<%= user.username %>"
   </script>
+  <% } else { %>
+  <script>
+    const userName = "userLok"
+  </script>
+  <% } %>
   <script defer src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="/script.js"></script>

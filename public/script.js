@@ -19,13 +19,18 @@ socket.on('hitesh', (msg)=>{
   }
 });
 
-const myVideo = document.createElement('video')
-myVideo.muted = true
+const myVideo = document.createElement('video');
+myVideo.muted = true;
+
+
 const peers = {}
 navigator.mediaDevices.getUserMedia({
   video: true,
-  audio: true
+  audio: {
+    echoCancellation: {exact: true}
+  }
 }).then(stream => {
+  console.log("Stream", stream);
   userVideoStream11 = stream;
   addVideoStream(myVideo, stream)
 
@@ -45,6 +50,34 @@ navigator.mediaDevices.getUserMedia({
     connectToNewUser(userId, stream)
   })
 })
+.catch(err =>{
+  if(err){
+    navigator.mediaDevices.getUserMedia({
+      video: false,
+      audio: true
+    }).then(stream => {
+      console.log("Stream", stream);
+      userVideoStream11 = stream;
+      addVideoStream(myVideo, stream)
+    
+      myPeer.on('call', call => {
+        call.answer(stream)
+        const video = document.createElement('video')
+        
+        call.on('stream', userVideoStream => {
+          addVideoStream(video, userVideoStream)
+          ovideo = video;
+        })
+      })
+    
+      socket.on('user-connected', userId => {
+        console.log("USER CONNECTED", userId);
+        alert('newUser joined the chat');
+        connectToNewUser(userId, stream)
+      })
+    })
+  }
+});
 
 socket.on('user-disconnected', userId => {
   peers[userId].close();
@@ -58,6 +91,7 @@ myPeer.on('open', id => {
 })
 
 function connectToNewUser(userId, stream) {
+  console.log("USER CONNECTED", userId);
   const call = myPeer.call(userId, stream)
   const video = document.createElement('video')
   call.on('stream', userVideoStream => {

@@ -14,6 +14,10 @@ app.get('/', (req, res) => {
 })
 .post('/', (req, res)=>res.redirect(req.body.room));
 
+app.get('/adddata', (req, res)=>{
+  console.log(req.query);
+})
+
 app.get('/:room', (req, res) => {
   res.render('room', { roomId: req.params.room })
 })
@@ -24,7 +28,7 @@ io.on('connection', socket => {
     socket.to(roomId).broadcast.emit('user-connected', userId)
     
     socket.on('hitesh',(msg, roomId)=>{
-      console.log(roomId, msg);
+      console.log(msg);
       // io.emit('hitesh', msg);
       socket.to(roomId).broadcast.emit('hitesh', msg);
     });

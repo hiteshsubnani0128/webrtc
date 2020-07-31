@@ -12,7 +12,9 @@ var mongoose = require("mongoose");
 var passport = require("passport");
 const controller = require('./controller/auth');
 
-const DB = "mongodb://localhost:27017/sih";
+// const DB = "mongodb://localhost:27017/sih";
+const DB = "mongodb+srv://newuser:newuser@cluster0.um27o.mongodb.net/sihgov?retryWrites=true&w=majority";
+
 mongoose
   .connect(DB, {
     useNewUrlParser: true,

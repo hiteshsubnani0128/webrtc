@@ -62,6 +62,44 @@ function signup(req, res) {
     );
 }
 
+
+function logMeIn(req, res) {
+    User.findOne({
+            email: req.body.email.toLocaleLowerCase(),
+        },
+        (err, user) => {
+            if (err) throw err;
+            if (user) {
+                User.comparePassword(req.body.password, user.password, function (
+                    err,
+                    isMatch
+                ) {
+                    if (err) throw err;
+                    if (isMatch) {
+                        req.login({
+                                username: user.username,
+                                uType: user.userType,
+                                id: user.id
+                            },
+                            function (err) {
+                                if (err) console.log(err);
+                                req.session.cookie.maxAge = 10 * 24 * 60 * 60 * 1000;
+                                res.redirect("/");
+                            }
+                        );
+                    } else
+                        res.render("login", {
+                            err: true,
+                        });
+                });
+            } else
+                res.render("login", {
+                    err: true,
+                });
+        }
+    );
+}
 module.exports = {
     signup,
+    logMeIn
 };

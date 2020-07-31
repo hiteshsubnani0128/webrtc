@@ -98,8 +98,8 @@ myPeer.on('open', id => {
 
 function connectToNewUser(userId, stream) {
   console.log("USER CONNECTED", userId);
-  const call = myPeer.call(userId, stream)
-  const video = document.createElement('video')
+  const call = myPeer.call(userId, stream);
+  const video = document.createElement('video');
   call.on('stream', userVideoStream => {
     addVideoStream(video, userVideoStream)
   })

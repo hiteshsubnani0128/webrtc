@@ -83,6 +83,14 @@ passport.deserializeUser(function (id, done) {
   });
 });
 
+function isAuth(req, res, next) {
+  if (req.user) {
+    res.redirect('back');
+  } else {
+    next();
+  }
+}
+
 app
   .get("/", (req, res) => {
     res.render("home", {
@@ -95,11 +103,12 @@ app.get("/adddata", (req, res) => {
   console.log(req.query);
 });
 
-app.get('/login', (req, res) => {
+app.get('/login', isAuth, (req, res) => {
+    res.render('login');
+  })
+  .post('/login', controller.logMeIn);
 
-});
-
-app.get('/signup', (req, res) => {
+app.get('/signup', isAuth, (req, res) => {
     res.render('signup', {
       user: false
     });

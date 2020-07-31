@@ -211,7 +211,11 @@
             <li>
               <div>
                 <h4><span uk-icon="icon: users; ratio: 2.0"> </span> <span class="uk-margin-medium-left">2</span></h4>
-
+                <div class="uk-margin-medium-top">
+                  <span uk-icon="icon: user"></span> <%= user.username %>
+                  <br>
+                  <span  class="uk-margin-small-top" uk-icon="icon: user"></span> Admin <span class="uk-label uk-label-success">Host</span> 
+                </div>
               </div>
               <div>
 
@@ -220,7 +224,9 @@
             <li>
               <div class="uk-text-center">
                 <h4>Statistics</h4>
-
+                <div id="stats">
+                  <canvas id="updating-chart" width="500" height="300"></canvas>
+                </div>
               </div>
             </li>
           </ul>
@@ -244,6 +250,7 @@
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.5/dist/js/uikit-icons.min.js"></script>
   <script src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.0-rc.2/Chart.js"></script>
   <script src="/script.js"></script>
 </body>
 

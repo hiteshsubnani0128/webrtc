@@ -20,9 +20,7 @@
     const userName = "Guest User"
   </script>
   <% } %>
-  <script defer src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script>
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="/script.js"></script>
+  
   <title>Event | <%= roomId %></title>
   <!-- load p5.js -->
   <!-- We use p5.js to get access to the webcamera and use canvas easier -->
@@ -182,7 +180,9 @@
       <div class="uk-width-expand@m">
         <div class="uk-card uk-card-default uk-card-body">
           <div>
-            <div id="video-grid"></div>
+            <div id="video-grid">
+
+            </div>
             <div id="videoContainer" style="display: none;"></div>
           </div>
         </div>
@@ -242,6 +242,9 @@
   <!-- UIkit JS -->
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.5/dist/js/uikit.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.5/dist/js/uikit-icons.min.js"></script>
+  <script src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/script.js"></script>
 </body>
 
 </html>

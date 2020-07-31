@@ -34,6 +34,7 @@ function start() {
   loop();
   myVideo.style.display='none';
   document.getElementById('videoContainer').style.display='block';
+  
 }
 
 // This function stops the experiment
@@ -115,7 +116,7 @@ function drawEyes()  {
         console.log(da);
         let ja = 20;
         if(da>ja){
-            socket.emit('hitesh', 'Hitesh Not paying attention' , ROOM_ID);
+            socket.emit('hitesh', `${userName} Not paying attention` , ROOM_ID, 'Admin');
           $.get(`http://localhost:3000/adddata?data=${da}`)
           .then(d =>{
             console.log(d);

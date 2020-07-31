@@ -13,9 +13,15 @@ const myPeer = new Peer({
 let muted = false,
   userVideoStream11, ovideo;
 
-socket.on('hitesh', (msg) => {
+socket.on('hitesh', (msg,userName) => {
   let lok = document.createElement('p');
   lok.setAttribute('class', 'rightMe');
+
+  let div = document.createElement('div');
+    div.append(userName);
+    div.setAttribute('class', 'smMuted');
+
+  lok.append(div);
   lok.append(msg);
   document.getElementById('msgBox').append(lok);
   if (navigator.vibrate) {

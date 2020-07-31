@@ -155,4 +155,10 @@ app.get("/logout", function (req, res) {
   }
 });
 
+// DASHBOARD
+
+app.get('/dashboard', (req, res) => {
+  res.render('dashboard');
+})
+
 server.listen(3000, () => console.log("Server started on 3000"));

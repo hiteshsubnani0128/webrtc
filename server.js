@@ -2,23 +2,22 @@ const express = require("express");
 const app = express();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
-const {
-  v4: uuidV4
-} = require("uuid");
-const User = require('./models/user');
+const { v4: uuidV4 } = require("uuid");
+const User = require("./models/user");
 const bodyParser = require("body-parser");
 var session = require("express-session");
 var mongoose = require("mongoose");
 var passport = require("passport");
-const controller = require('./controller/auth');
+const controller = require("./controller/auth");
 
 // const DB = "mongodb://localhost:27017/sih";
-const DB = "mongodb+srv://newuser:newuser@cluster0.um27o.mongodb.net/sihgov?retryWrites=true&w=majority";
+const DB =
+  "mongodb+srv://newuser:newuser@cluster0.um27o.mongodb.net/sihgov?retryWrites=true&w=majority";
 
 mongoose
   .connect(DB, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   })
   .then((db) => {
     console.log("DB connected");
@@ -72,7 +71,6 @@ app.use(
   })
 );
 
-
 passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
@@ -85,9 +83,17 @@ passport.deserializeUser(function (id, done) {
 
 function isAuth(req, res, next) {
   if (req.user) {
-    res.redirect('back');
+    res.redirect("back");
   } else {
     next();
+  }
+}
+
+function isAuthIs(req, res, next) {
+  if (req.user) {
+    next();
+  } else {
+    res.redirect("back");
   }
 }
 
@@ -103,25 +109,26 @@ app.get("/adddata", (req, res) => {
   console.log(req.query);
 });
 
-app.get('/login', isAuth, (req, res) => {
-    res.render('login');
+app
+  .get("/login", isAuth, (req, res) => {
+    res.render("login");
   })
-  .post('/login', controller.logMeIn);
+  .post("/login", controller.logMeIn);
 
-app.get('/signup', isAuth, (req, res) => {
-    res.render('signup', {
-      user: false
+app
+  .get("/signup", isAuth, (req, res) => {
+    res.render("signup", {
+      user: false,
     });
   })
-  .post('/signup', controller.signup);
-
+  .post("/signup", controller.signup);
 
 // ====================== Socket IO =================================
 
 app.get("/e/:room", (req, res) => {
   res.render("room", {
     roomId: req.params.room,
-    user: req.user
+    user: req.user,
   });
 });
 
@@ -157,8 +164,13 @@ app.get("/logout", function (req, res) {
 
 // DASHBOARD
 
-app.get('/dashboard', (req, res) => {
-  res.render('dashboard');
-})
+app.get("/dashboard", isAuthIs, (req, res) => {
+  User.findOne({
+    username: req.user.username,
+  }).then((user) => {
+    console.log(user);
+    res.render("dashboard");
+  });
+});
 
 server.listen(3000, () => console.log("Server started on 3000"));

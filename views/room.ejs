@@ -20,7 +20,7 @@
     const userName = "Guest User"
   </script>
   <% } %>
-  
+
   <title>Event | <%= roomId %></title>
   <!-- load p5.js -->
   <!-- We use p5.js to get access to the webcamera and use canvas easier -->
@@ -158,8 +158,8 @@
               <a href="#">User <span uk-icon="icon:user;ratio: 1.2"> </span> </a>
               <div class="uk-navbar-dropdown">
                 <ul class="uk-nav uk-navbar-dropdown-nav">
-                  <li class="uk-active"><a href="#">Dashboard</a></li>
-                  <li><a href="#">Profile</a></li>
+                  <li class="uk-active"><a href="/dashboard">Dashboard</a></li>
+                  <li><a href="/profile">Profile</a></li>
                   <li><a href="/logout">Logout</a></li>
                 </ul>
               </div>
@@ -214,7 +214,8 @@
                 <div class="uk-margin-medium-top">
                   <span uk-icon="icon: user"></span> <%= user.username %>
                   <br>
-                  <span  class="uk-margin-small-top" uk-icon="icon: user"></span> Admin <span class="uk-label uk-label-success">Host</span> 
+                  <span class="uk-margin-small-top" uk-icon="icon: user"></span> Admin <span
+                    class="uk-label uk-label-success">Host</span>
                 </div>
               </div>
               <div>

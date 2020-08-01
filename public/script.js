@@ -13,13 +13,13 @@ const myPeer = new Peer({
 let muted = false,
   userVideoStream11, ovideo;
 
-socket.on('hitesh', (msg,userName) => {
+socket.on('hitesh', (msg, userName) => {
   let lok = document.createElement('p');
   lok.setAttribute('class', 'rightMe');
 
   let div = document.createElement('div');
-    div.append(userName);
-    div.setAttribute('class', 'smMuted');
+  div.append(userName);
+  div.setAttribute('class', 'smMuted');
 
   lok.append(div);
   lok.append(msg);
@@ -169,42 +169,41 @@ function sendChat() {
 }
 
 var canvas = document.getElementById('updating-chart'),
-    ctx = canvas.getContext('2d'),
-    startingData = {
-      labels: [0, 2, 4, 6, 8, 10, 12],
-      datasets: [
-          {   
-              label: 'user1',
-              fillColor: "rgba(220,220,220,0.2)",
-              strokeColor: "rgba(220,220,220,1)",
-              pointColor: "rgba(220,220,220,1)",
-              pointStrokeColor: "#fff",
-              data: [65, 59, 80, 81, 56, 55, 40]
-          },
-          {
-              label: userName,
-              fillColor: "rgba(151,187,205,0.2)",
-              strokeColor: "rgba(151,187,205,1)",
-              pointColor: "rgba(151,187,205,1)",
-              pointStrokeColor: "#fff",
-              data: [28, 48, 40, 19, 86, 27, 90]
-          }
-      ]
-    };
+  ctx = canvas.getContext('2d'),
+  startingData = {
+    labels: [0, 2, 4, 6, 8, 10, 12],
+    datasets: [{
+        label: 'user1',
+        fillColor: "rgba(220,220,220,0.2)",
+        strokeColor: "rgba(220,220,220,1)",
+        pointColor: "rgba(220,220,220,1)",
+        pointStrokeColor: "#fff",
+        data: [65, 59, 80, 81, 56, 55, 40]
+      },
+      {
+        label: userName,
+        fillColor: "rgba(151,187,205,0.2)",
+        strokeColor: "rgba(151,187,205,1)",
+        pointColor: "rgba(151,187,205,1)",
+        pointStrokeColor: "#fff",
+        data: [28, 48, 40, 19, 86, 27, 90]
+      }
+    ]
+  };
 
 // Reduce the animation steps for demo clarity.
-var myLiveChart = new Chart(ctx,{
+var myLiveChart = new Chart(ctx, {
   type: 'line',
   data: startingData
 });
 
 
-setInterval(function(){
+setInterval(function () {
   // Get a random index point
   var indexToUpdate = Math.round(Math.random() * startingData.labels.length);
-  
+
   // Update one of the points in the second dataset
   myLiveChart.data.datasets[0].data[indexToUpdate] = Math.random() * 100;
-  
+
   myLiveChart.update();
 }, 500);

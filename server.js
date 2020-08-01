@@ -2,17 +2,20 @@ const express = require("express");
 const app = express();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
-const { v4: uuidV4 } = require("uuid");
+const {
+  v4: uuidV4
+} = require("uuid");
 const User = require("./models/user");
 const bodyParser = require("body-parser");
 var session = require("express-session");
 var mongoose = require("mongoose");
 var passport = require("passport");
 const controller = require("./controller/auth");
+const Room = require("./models/room");
 
-// const DB = "mongodb://localhost:27017/sih";
-const DB =
-  "mongodb+srv://newuser:newuser@cluster0.um27o.mongodb.net/sihgov?retryWrites=true&w=majority";
+const DB = "mongodb://localhost:27017/sih";
+// const DB =
+//   "mongodb+srv://newuser:newuser@cluster0.um27o.mongodb.net/sihgov?retryWrites=true&w=majority";
 
 mongoose
   .connect(DB, {
@@ -103,7 +106,9 @@ app
       user: req.user,
     });
   })
-  .post("/", (req, res) => res.redirect("/e/" + req.body.room));
+  .post("/", (req, res) => {
+    res.redirect("/e/" + req.body.room);
+  });
 
 app.get("/adddata", (req, res) => {
   console.log(req.query);
@@ -126,10 +131,30 @@ app
 // ====================== Socket IO =================================
 
 app.get("/e/:room", (req, res) => {
-  res.render("room", {
-    roomId: req.params.room,
-    user: req.user,
-  });
+  Room.findOne({
+      roomName: req.params.room
+    })
+    .then(room => {
+      if (!room) {
+        var newUser = new Room({
+          roomName: req.params.room
+        });
+        Room.createRoom(newUser, (err, room) => {
+          console.log(room);
+          res.render("room", {
+            roomId: req.params.room,
+            user: req.user,
+            room: room
+          });
+        });
+      } else {
+        res.render("room", {
+          roomId: req.params.room,
+          user: req.user,
+          room: room
+        });
+      }
+    });
 });
 
 io.on("connection", (socket) => {
@@ -138,8 +163,26 @@ io.on("connection", (socket) => {
     socket.to(roomId).broadcast.emit("user-connected", userId);
 
     socket.on("hitesh", (msg, roomId, username) => {
-      console.log(msg, "From", username);
-      // io.emit('hitesh', msg);
+      let chat = [username, msg];
+
+      Room.findOne({
+          roomName: roomId
+        })
+        .then(room => {
+          console.log(room);
+        })
+
+      Room.updateOne({
+          roomName: roomId
+        }, {
+          $push: {
+            chat: [chat]
+          }
+        })
+        .then(d => {
+          console.log(d);
+        });
+
       socket.to(roomId).broadcast.emit("hitesh", msg, username);
     });
 
@@ -169,8 +212,19 @@ app.get("/dashboard", isAuthIs, (req, res) => {
     username: req.user.username,
   }).then((user) => {
     console.log(user);
-    res.render("dashboard");
+    res.render("dashboard", {
+      user
+    });
   });
+});
+
+app.get("/:room/dashboard", (req, res) => {
+  Room.findOne({
+      roomName: req.params.id
+    })
+    .then(room => {
+      console.log(room);
+    });
 });
 
 server.listen(3000, () => console.log("Server started on 3000"));

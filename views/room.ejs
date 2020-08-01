@@ -10,6 +10,7 @@
 
   <script>
     const ROOM_ID = "<%= roomId %>"
+    console.log("ROOM", ROOM_ID);
   </script>
   <% if(user) { %>
   <script>
@@ -197,7 +198,9 @@
 
           <ul class="uk-switcher uk-margin">
             <li>
-              <div class="msgBox" id="msgBox"></div>
+              <div class="msgBox" id="msgBox">
+
+              </div>
               <div class="uk-margin">
                 <div class="uk-inline">
                   <a class="uk-form-icon uk-form-icon-flip" onclick="sendChat()" href="#"

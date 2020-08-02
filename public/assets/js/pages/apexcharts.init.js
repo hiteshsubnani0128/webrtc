@@ -157,16 +157,27 @@ options = {
         width: 3
     },
     series: [{
-        name: "User",
-        data: [34, 40, 28, 52, 42, 109, 100]
-    }, {
-        name: "User2",
-        data: [32, 60, 34, 46, 34, 52, 41]
-    }],
+            name: "Karina",
+            data: [34, 40, 28, 52, 42, 109, 100]
+        }, {
+            name: "Aditi",
+            data: [32, 60, 34, 46, 34, 52, 41]
+        }, {
+            name: "Vanshika",
+            data: [24, 14, 48, 52, 32, 19, 10]
+        }, {
+            name: "Hitesh",
+            data: [22, 16, 43, 14, 43, 25, 11]
+        },
+        {
+            name: "Aditri",
+            data: [12, 46, 13, 54, 53, 15, 21]
+        }
+    ],
     colors: ["#556ee6", "#34c38f"],
     xaxis: {
         type: "datetime",
-        categories: ["2018-09-19T00:00:00", "2018-09-19T01:30:00", "2018-09-19T02:30:00", "2018-09-19T03:30:00", "2018-09-19T04:30:00", "2018-09-19T05:30:00", "2018-09-19T06:30:00"]
+        categories: ["2020-08-01T10:00:00", "2020-08-01T10:10:00", "2020-08-01T10:20:00", "2020-08-01T10:30:00", "2020-08-01T10:40:00", "2020-08-01T10:50:00"]
     },
     grid: {
         borderColor: "#f1f1f1"
@@ -189,7 +200,7 @@ options = {
     plotOptions: {
         bar: {
             horizontal: !1,
-            columnWidth: "45%",
+            columnWidth: "15%",
             endingShape: "rounded"
         }
     },
@@ -202,22 +213,16 @@ options = {
         colors: ["transparent"]
     },
     series: [{
-        name: "Net Profit",
-        data: [46, 57, 59, 54, 62, 58, 64, 60, 66]
-    }, {
-        name: "Revenue",
-        data: [74, 83, 102, 97, 86, 106, 93, 114, 94]
-    }, {
-        name: "Free Cash Flow",
-        data: [37, 42, 38, 26, 47, 50, 54, 55, 43]
+        name: "Attention Span",
+        data: [76, 87, 79, 74, 82]
     }],
-    colors: ["#34c38f", "#556ee6", "#f46a6a"],
+    colors: ["#556ee6"],
     xaxis: {
-        categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"]
+        categories: ["Session 1", "Session 2", "Session 3", "Session 4", "Session 5"]
     },
     yaxis: {
         title: {
-            text: "$ (thousands)"
+            text: "Attention Span"
         }
     },
     grid: {
@@ -229,7 +234,7 @@ options = {
     tooltip: {
         y: {
             formatter: function (e) {
-                return "$ " + e + " thousands"
+                return " " + e + "% Attention"
             }
         }
     }
@@ -451,16 +456,16 @@ options = {
                 },
                 total: {
                     show: !0,
-                    label: "Total",
+                    label: "Total Attention",
                     formatter: function (e) {
-                        return 249
+                        return '45 Minutes'
                     }
                 }
             }
         }
     },
-    series: [44, 55, 67, 83],
-    labels: ["Computer", "Tablet", "Laptop", "Mobile"],
+    series: [90, 86, 82, 71, 69],
+    labels: ["Karina", "Aditi", "Aditri", "Hitesh", "Vanshika"],
     colors: ["#556ee6", "#34c38f", "#f46a6a", "#f1b44c"]
 };
 (chart = new ApexCharts(document.querySelector("#radial_chart"), options)).render();
@@ -469,8 +474,8 @@ options = {
         height: 320,
         type: "pie"
     },
-    series: [44, 55, 41, 17, 15],
-    labels: ["Series 1", "Series 2", "Series 3", "Series 4", "Series 5"],
+    series: [1, 3, 2],
+    labels: ["Not Attentive", "Fully Attentive", "Sub Optimal"],
     colors: ["#34c38f", "#556ee6", "#f46a6a", "#50a5f1", "#f1b44c"],
     legend: {
         show: !0,

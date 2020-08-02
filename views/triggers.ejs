@@ -17,6 +17,7 @@
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="assets/libs/toastr/build/toastr.min.css">
 
 </head>
 
@@ -326,7 +327,7 @@
                             <div class="p-3">
                                 <div class="row align-items-center">
                                     <div class="col">
-                                        <h6 class="m-0"> Notifications </h6>
+                                        <h6 class="m-0"> Manage Triggers </h6>
                                     </div>
                                     <!-- <div class="col-auto">
                                         <a href="#!" class="small"> View All</a>
@@ -443,20 +444,18 @@
 
                 <!--- Sidemenu -->
                 <div id="sidebar-menu">
-                    <!-- Left Menu Start -->
+
                     <ul class="metismenu list-unstyled" id="side-menu">
                         <li class="menu-title">Menu</li>
 
                         <li>
-                            <a href="javascript: void(0);" class="waves-effect">
+                            <a href="/dashboard" class="waves-effect">
                                 <i class="bx bx-home-circle"></i><span
                                     class="badge badge-pill badge-info float-right">Admin</span>
                                 <span>Statistics</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
-                                <!-- <li><a href="index.html">Default</a></li>
-                                <li><a href="dashboard-saas.html">Saas</a></li>
-                                <li><a href="dashboard-crypto.html">Crypto</a></li> -->
+
                             </ul>
                         </li>
                         <li>
@@ -753,22 +752,24 @@
         </div>
         <!-- Left Sidebar End -->
 
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
         <div class="main-content">
 
             <div class="page-content">
                 <div class="container-fluid">
-
                     <!-- start page title -->
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-flex align-items-center justify-content-between">
-                                <h4 class="mb-0 font-size-18">Dashboard</h4>
+                                <h4 class="mb-0 font-size-18">Manage Triggers</h4>
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">User Dashboard</a>
-                                        </li>
-                                        <li class="breadcrumb-item active">Dashboard</li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Attention
+                                                Triggers</a></li>
+                                        <li class="breadcrumb-item active">Manage Triggers</li>
                                     </ol>
                                 </div>
 
@@ -778,765 +779,266 @@
                     <!-- end page title -->
 
                     <div class="row">
-                        <!-- <div class="col-xl-4">
-                            <div class="card overflow-hidden">
-                                <div class="bg-soft-primary">
-                                    <div class="row">
-                                        <div class="col-7">
-                                            <div class="text-primary p-3">
-                                                <h5 class="text-primary">Welcome Back !</h5>
-                                                <p>AI-Meet Dashboard</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-5 align-self-end">
-                                            <img src="assets/images/profile-img.png" alt="" class="img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body pt-0">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="avatar-md profile-user-wid mb-4">
-                                                <img src="https://storage.googleapis.com/incind/defaultimage.pngSODF7oA"
-                                                    alt="" class="img-thumbnail rounded-circle">
-                                            </div>
-                                            <h5 class="font-size-15 text-truncate text-capitalize"><%= user.username %>
-                                            </h5>
-                                            <p class="text-muted mb-0 text-truncate">UI/UX Designer</p>
-                                        </div>
-
-                                        <div class="col-sm-8">
-                                            <div class="pt-4">
-
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <h5 class="font-size-15">12</h5>
-                                                        <p class="text-muted mb-0">Projects</p>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <h5 class="font-size-15">3</h5>
-                                                        <p class="text-muted mb-0">Subjects</p>
-                                                    </div>
-                                                </div>
-                                                <div class="mt-4">
-                                                    <a href="#"
-                                                        class="btn btn-primary waves-effect waves-light btn-sm">View
-                                                        Profile <i class="mdi mdi-arrow-right ml-1"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-                        <!-- <div class="card">
+                        <div class="col-lg-12">
+                            <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title mb-4">Monthly Earning</h4>
                                     <div class="row">
-                                        <div class="col-sm-6">
-                                            <p class="text-muted">This month</p>
-                                            <h3>$34,252</h3>
-                                            <p class="text-muted"><span class="text-success mr-2"> 12% <i
-                                                        class="mdi mdi-arrow-up"></i> </span> From previous period</p>
+                                        <div class="col-xl-4">
+                                            <div class="control-group">
+                                                <div class="controls">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Title</label>
+                                                        <input id="title" type="text" class="input-large form-control"
+                                                            placeholder="Enter a title ..."
+                                                            value="@Name Pay Attention" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label">Message</label>
+                                                        <textarea class="input-large form-control" id="message" rows="3"
+                                                            placeholder="Enter a message ...">Hi @Name we noticed that you are not paying attention.? Any particular reason do let us know through chat or contact us using @Email </textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="control-group my-4">
 
-                                            <div class="mt-4">
-                                                <a href="#" class="btn btn-primary waves-effect waves-light btn-sm">View
-                                                    More <i class="mdi mdi-arrow-right ml-1"></i></a>
+                                                <div class="custom-control custom-checkbox mb-2">
+                                                    <input type="checkbox" class="custom-control-input input-mini"
+                                                        id="closeButton" value="checked">
+                                                    <label class="custom-control-label" for="closeButton">Close
+                                                        Button</label>
+                                                </div>
+
+                                                <div class="custom-control custom-checkbox mb-2">
+                                                    <input type="checkbox" class="custom-control-input input-mini"
+                                                        id="addBehaviorOnToastClick" value="checked">
+                                                    <label class="custom-control-label"
+                                                        for="addBehaviorOnToastClick">Add behavior on toast
+                                                        click</label>
+                                                </div>
+
+                                                <div class="custom-control custom-checkbox mb-2">
+                                                    <input type="checkbox" class="custom-control-input input-mini"
+                                                        id="debugInfo" value="checked">
+                                                    <label class="custom-control-label" for="debugInfo">Debug</label>
+                                                </div>
+
+                                                <div class="custom-control custom-checkbox mb-2">
+                                                    <input type="checkbox" class="custom-control-input input-mini"
+                                                        id="progressBar" value="checked">
+                                                    <label class="custom-control-label" for="progressBar">Progress
+                                                        Bar</label>
+                                                </div>
+
+                                                <div class="custom-control custom-checkbox mb-2">
+                                                    <input type="checkbox" class="custom-control-input input-mini"
+                                                        id="preventDuplicates" value="checked">
+                                                    <label class="custom-control-label" for="preventDuplicates">Prevent
+                                                        Duplicates</label>
+                                                </div>
+
+                                                <div class="custom-control custom-checkbox mb-2">
+                                                    <input type="checkbox" class="custom-control-input input-mini"
+                                                        id="addClear" value="checked">
+                                                    <label class="custom-control-label" for="addClear">Add button to
+                                                        force clearing a toast, ignoring focus</label>
+                                                </div>
+
+                                                <div class="custom-control custom-checkbox mb-2">
+                                                    <input type="checkbox" class="custom-control-input input-mini"
+                                                        id="newestOnTop" value="checked">
+                                                    <label class="custom-control-label" for="newestOnTop">Newest on
+                                                        top</label>
+                                                </div>
+
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="mt-4 mt-sm-0">
-                                                <div id="radialBar-chart" class="apex-charts"></div>
+
+                                        <div class="col-xl-2">
+                                            <div class="control-group" id="toastTypeGroup">
+                                                <div class="controls mb-4">
+                                                    <label>Toast Type</label>
+
+                                                    <div class="custom-control custom-radio mb-2">
+                                                        <input type="radio" id="radio1" name="radio"
+                                                            class="custom-control-input" value="success" checked>
+                                                        <label class="custom-control-label" for="radio1">Success</label>
+                                                    </div>
+
+                                                    <div class="custom-control custom-radio mb-2">
+                                                        <input type="radio" id="radio2" name="radio"
+                                                            class="custom-control-input" value="info">
+                                                        <label class="custom-control-label" for="radio2">Info</label>
+                                                    </div>
+
+                                                    <div class="custom-control custom-radio mb-2">
+                                                        <input type="radio" id="radio3" name="radio"
+                                                            class="custom-control-input" value="warning">
+                                                        <label class="custom-control-label" for="radio3">Warning</label>
+                                                    </div>
+
+                                                    <div class="custom-control custom-radio mb-2">
+                                                        <input type="radio" id="radio4" name="radio"
+                                                            class="custom-control-input" value="error">
+                                                        <label class="custom-control-label" for="radio4">Error</label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="control-group" id="positionGroup">
+                                                <div class="controls mb-4">
+                                                    <label>Position</label>
+
+                                                    <div class="custom-control custom-radio mb-2">
+                                                        <input type="radio" id="radio5" name="positions"
+                                                            class="custom-control-input" value="toast-top-right"
+                                                            checked />
+                                                        <label class="custom-control-label" for="radio5">Top
+                                                            Right</label>
+                                                    </div>
+
+                                                    <div class="custom-control custom-radio mb-2">
+                                                        <input type="radio" id="radio6" name="positions"
+                                                            class="custom-control-input" value="toast-bottom-right" />
+                                                        <label class="custom-control-label" for="radio6">Bottom
+                                                            Right</label>
+                                                    </div>
+
+                                                    <div class="custom-control custom-radio mb-2">
+                                                        <input type="radio" id="radio7" name="positions"
+                                                            class="custom-control-input" value="toast-bottom-left" />
+                                                        <label class="custom-control-label" for="radio7">Bottom
+                                                            Left</label>
+                                                    </div>
+
+                                                    <div class="custom-control custom-radio mb-2">
+                                                        <input type="radio" id="radio8" name="positions"
+                                                            class="custom-control-input" value="toast-top-left" />
+                                                        <label class="custom-control-label" for="radio8">Top
+                                                            Left</label>
+                                                    </div>
+
+                                                    <div class="custom-control custom-radio mb-2">
+                                                        <input type="radio" id="radio9" name="positions"
+                                                            class="custom-control-input" value="toast-top-full-width" />
+                                                        <label class="custom-control-label" for="radio9">Top Full
+                                                            Width</label>
+                                                    </div>
+
+                                                    <div class="custom-control custom-radio mb-2">
+                                                        <input type="radio" id="radio10" name="positions"
+                                                            class="custom-control-input"
+                                                            value="toast-bottom-full-width" />
+                                                        <label class="custom-control-label" for="radio10">Bottom Full
+                                                            Width</label>
+                                                    </div>
+
+                                                    <div class="custom-control custom-radio mb-2">
+                                                        <input type="radio" id="radio11" name="positions"
+                                                            class="custom-control-input" value="toast-top-center" />
+                                                        <label class="custom-control-label" for="radio11">Top
+                                                            Center</label>
+                                                    </div>
+
+                                                    <div class="custom-control custom-radio mb-2">
+                                                        <input type="radio" id="radio12" name="positions"
+                                                            class="custom-control-input" value="toast-bottom-center" />
+                                                        <label class="custom-control-label" for="radio12">Bottom
+                                                            Center</label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-3">
+                                            <div class="control-group">
+                                                <div class="controls">
+                                                    <div class="form-group">
+                                                        <label for="showEasing">Show Easing</label>
+                                                        <input id="showEasing" type="text" placeholder="swing, linear"
+                                                            class="input-mini form-control" value="swing" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="hideEasing">Hide Easing</label>
+                                                        <input id="hideEasing" type="text" placeholder="swing, linear"
+                                                            class="input-mini form-control" value="linear" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="showMethod">Show Method</label>
+                                                        <input id="showMethod" type="text"
+                                                            placeholder="show, fadeIn, slideDown"
+                                                            class="input-mini form-control" value="fadeIn" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="hideMethod">Hide Method</label>
+                                                        <input id="hideMethod" type="text"
+                                                            placeholder="hide, fadeOut, slideUp"
+                                                            class="input-mini form-control" value="fadeOut" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-3">
+                                            <div class="control-group">
+                                                <div class="controls">
+                                                    <div class="form-group">
+                                                        <label for="showDuration">Show Duration</label>
+                                                        <input id="showDuration" type="text" placeholder="ms"
+                                                            class="input-mini form-control" value="300" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="hideDuration">Hide Duration</label>
+                                                        <input id="hideDuration" type="text" placeholder="ms"
+                                                            class="input-mini form-control" value="1000" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="timeOut">Time out</label>
+                                                        <input id="timeOut" type="text" placeholder="ms"
+                                                            class="input-mini form-control" value="5000" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="extendedTimeOut">Extended time out</label>
+                                                        <input id="extendedTimeOut" type="text" placeholder="ms"
+                                                            class="input-mini form-control" value="1000" />
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <p class="text-muted mb-0">We craft digital, graphic and dimensional thinking.</p>
-                                </div>
-                            </div> -->
-                    </div>
-                    <div class="col-xl-12 text-center">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="card mini-stats-wid">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <p class="text-muted font-weight-medium">Number of Unique Participants
-                                                </p>
-                                                <h4 class="mb-0">5</h4>
-                                            </div>
+                                    <!-- end row -->
 
-                                            <div
-                                                class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
-                                                <span class="avatar-title">
-                                                    <i class="bx bx-copy-alt font-size-24"></i>
-                                                </span>
+                                    <div class="row mt-4">
+                                        <div class="col-md-12">
+                                            <div class="button-items">
+                                                <button type="button" class="btn btn-primary" id="showtoast">Show
+                                                    Toast</button>
+                                                <button type="button" class="btn btn-danger" id="cleartoasts">Clear
+                                                    Toasts</button>
+                                                <button type="button" class="btn btn-danger" id="clearlasttoast">Clear
+                                                    Last Toast</button>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card mini-stats-wid">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <p class="text-muted font-weight-medium">Overall Attention</p>
-                                                <h4 class="mb-0">45 Minutes</h4>
-                                            </div>
 
-                                            <div
-                                                class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
-                                                <span class="avatar-title rounded-circle bg-primary">
-                                                    <i class="bx bx-archive-in font-size-24"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card mini-stats-wid">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <p class="text-muted font-weight-medium" style="width: 220px;">Average
-                                                    Attention Span</p>
-                                                <h4 class="mb-0">63%</h4>
-                                            </div>
-
-                                            <div
-                                                class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
-                                                <span class="avatar-title rounded-circle bg-primary">
-                                                    <i class="bx bx-purchase-tag-alt font-size-24"></i>
-                                                </span>
-                                            </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-12">
+                                            <pre id='toastrOptions' class="toastr-options"></pre>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <!-- end row -->
 
-
-
-                    <div class="row">
-                        <!-- <div class="col-xl-4"> 
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-4">Social Source</h4>
-                                    <div class="text-center">
-                                        <div class="avatar-sm mx-auto mb-4">
-                                            <span class="avatar-title rounded-circle bg-soft-primary font-size-24">
-                                                <i class="mdi mdi-facebook text-primary"></i>
-                                            </span>
-                                        </div>
-                                        <p class="font-16 text-muted mb-2"></p>
-                                        <h5><a href="#" class="text-dark">Facebook - <span
-                                                    class="text-muted font-16">125 sales</span> </a></h5>
-                                        <p class="text-muted">Maecenas nec odio et ante tincidunt tempus. Donec vitae
-                                            sapien ut libero venenatis faucibus tincidunt.</p>
-                                        <a href="#" class="text-primary font-16">Learn more <i
-                                                class="mdi mdi-chevron-right"></i></a>
-                                    </div>
-                                    <div class="row mt-4">
-                                        <div class="col-4">
-                                            <div class="social-source text-center mt-3">
-                                                <div class="avatar-xs mx-auto mb-3">
-                                                    <span class="avatar-title rounded-circle bg-primary font-size-16">
-                                                        <i class="mdi mdi-facebook text-white"></i>
-                                                    </span>
-                                                </div>
-                                                <h5 class="font-size-15">Facebook</h5>
-                                                <p class="text-muted mb-0">125 sales</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="social-source text-center mt-3">
-                                                <div class="avatar-xs mx-auto mb-3">
-                                                    <span class="avatar-title rounded-circle bg-info font-size-16">
-                                                        <i class="mdi mdi-twitter text-white"></i>
-                                                    </span>
-                                                </div>
-                                                <h5 class="font-size-15">Twitter</h5>
-                                                <p class="text-muted mb-0">112 sales</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="social-source text-center mt-3">
-                                                <div class="avatar-xs mx-auto mb-3">
-                                                    <span class="avatar-title rounded-circle bg-pink font-size-16">
-                                                        <i class="mdi mdi-instagram text-white"></i>
-                                                    </span>
-                                                </div>
-                                                <h5 class="font-size-15">Instagram</h5>
-                                                <p class="text-muted mb-0">104 sales</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div> 
-                            </div>
-                        </div> -->
-                        <!-- <div class="col-md-5">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title mb-5">Activity</h4>
-                                <ul class="verti-timeline list-unstyled">
-                                    <li class="event-list">
-                                        <div class="event-timeline-dot">
-                                            <i class="bx bx-right-arrow-circle font-size-18"></i>
-                                        </div>
-                                        <div class="media">
-                                            <div class="mr-3">
-                                                <h5 class="font-size-14">25 July <i
-                                                        class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ml-2"></i>
-                                                </h5>
-                                            </div>
-                                            <div class="media-body">
-                                                <div>
-                                                   Session on Python
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="event-list">
-                                        <div class="event-timeline-dot">
-                                            <i class="bx bx-right-arrow-circle font-size-18"></i>
-                                        </div>
-                                        <div class="media">
-                                            <div class="mr-3">
-                                                <h5 class="font-size-14">27 July <i
-                                                        class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ml-2"></i>
-                                                </h5>
-                                            </div>
-                                            <div class="media-body">
-                                                <div>
-                                                    Session on javascript 
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="event-list active">
-                                        <div class="event-timeline-dot">
-                                            <i class="bx bxs-right-arrow-circle font-size-18 bx-fade-right"></i>
-                                        </div>
-                                        <div class="media">
-                                            <div class="mr-3">
-                                                <h5 class="font-size-14">28 July <i
-                                                        class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ml-2"></i>
-                                                </h5>
-                                            </div>
-                                            <div class="media-body">
-                                                <div>
-                                                    Session on Oracle
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="event-list">
-                                        <div class="event-timeline-dot">
-                                            <i class="bx bx-right-arrow-circle font-size-18"></i>
-                                        </div>
-                                        <div class="media">
-                                            <div class="mr-3">
-                                                <h5 class="font-size-14">30 July <i
-                                                        class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ml-2"></i>
-                                                </h5>
-                                            </div>
-                                            <div class="media-body">
-                                                <div>
-                                                    Session on Java
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div class="text-center mt-4"><a href="#"
-                                        class="btn btn-primary waves-effect waves-light btn-sm">View More <i
-                                            class="mdi mdi-arrow-right ml-1"></i></a></div>
-                            </div>
-                        </div>
-                    </div> -->
-
-                        <div class="col-md-6">
-
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-4">Participation of Each Participant</h4>
-
-                                    <div id="pie_chart" class="apex-charts" dir="ltr"></div>
-                                    <div class="text-center mt-3">
-                                        <span class="text-primary">Attention span of Users</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-4">Attention Graph</h4>
-                                    <div id="spline_area" class="apex-charts" dir="ltr"></div>
-                                </div>
-                            </div>
-                            <!--end card-->
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-4">Radial Chart</h4>
-
-                                    <div id="radial_chart" class="apex-charts" dir="ltr"></div>
-                                </div>
-                            </div>
-                            <!--end card-->
-
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-4">Most Active Users</h4>
-                                    <div class="media mb-4">
-                                        <img class="d-flex mr-3 rounded-circle"
-                                            src="https://storage.googleapis.com/incind/defaultimage.pngSODF7oA"
-                                            alt="Generic placeholder image" height="64">
-                                        <div class="media-body">
-                                            <h5 class="mt-0 font-16">Hitesh</h5>
-                                            <span class="badge badge-pill badge-soft-success font-size-11">Happy</span>
-                                            <span class="badge badge-pill badge-soft-primary font-size-11">71%
-                                                Attentive</span>
-                                        </div>
-                                    </div>
-                                    <div class="media mb-4">
-                                        <img class="d-flex mr-3 rounded-circle"
-                                            src="https://storage.googleapis.com/incind/defaultimage.pngSODF7oA"
-                                            alt="Generic placeholder image" height="64">
-                                        <div class="media-body">
-                                            <h5 class="mt-0 font-16">Karina</h5>
-                                            <span
-                                                class="badge badge-pill badge-soft-success font-size-11">Neutral</span>
-                                            <span class="badge badge-pill badge-soft-primary font-size-11">71%
-                                                Attentive</span>
-                                        </div>
-                                    </div>
-                                    <div class="media mb-4">
-                                        <img class="d-flex mr-3 rounded-circle"
-                                            src="https://storage.googleapis.com/incind/defaultimage.pngSODF7oA"
-                                            alt="Generic placeholder image" height="64">
-                                        <div class="media-body">
-                                            <h5 class="mt-0 font-16">Aditi <small class="ml-3"><a href="/userdash">View
-                                                        Profile</a></small></h5>
-                                            <span
-                                                class="badge badge-pill badge-soft-success font-size-11">Neutral</span>
-                                            <span class="badge badge-pill badge-soft-primary font-size-11">71%
-                                                Attentive</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="media mb-4">
-                                        <img class="d-flex mr-3 rounded-circle"
-                                            src="https://storage.googleapis.com/incind/defaultimage.pngSODF7oA"
-                                            alt="Generic placeholder image" height="64">
-                                        <div class="media-body">
-                                            <h5 class="mt-0 font-16">Aditri</h5>
-                                            <span
-                                                class="badge badge-pill badge-soft-success font-size-11">Surprise</span>
-                                            <span class="badge badge-pill badge-soft-primary font-size-11">71%
-                                                Attentive</span>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                        <!--end card-->
-
-                    </div>
-                </div>
-
-                <!-- <div class="col-xl-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-4">Top Cities Selling Product</h4>
-
-                                    <div class="text-center">
-                                        <div class="mb-4">
-                                            <i class="bx bx-map-pin text-primary display-4"></i>
-                                        </div>
-                                        <h3>1,456</h3>
-                                        <p>San Francisco</p>
-                                    </div>
-
-                                    <div class="table-responsive mt-4">
-                                        <table class="table table-centered table-nowrap">
-                                            <tbody>
-                                                <tr>
-                                                    <td style="width: 30%">
-                                                        <p class="mb-0">San Francisco</p>
-                                                    </td>
-                                                    <td style="width: 25%">
-                                                        <h5 class="mb-0">1,456</h5>
-                                                    </td>
-                                                    <td>
-                                                        <div class="progress bg-transparent progress-sm">
-                                                            <div class="progress-bar bg-primary rounded"
-                                                                role="progressbar" style="width: 94%" aria-valuenow="94"
-                                                                aria-valuemin="0" aria-valuemax="100"></div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <p class="mb-0">Los Angeles</p>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="mb-0">1,123</h5>
-                                                    </td>
-                                                    <td>
-                                                        <div class="progress bg-transparent progress-sm">
-                                                            <div class="progress-bar bg-success rounded"
-                                                                role="progressbar" style="width: 82%" aria-valuenow="82"
-                                                                aria-valuemin="0" aria-valuemax="100"></div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <p class="mb-0">San Diego</p>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="mb-0">1,026</h5>
-                                                    </td>
-                                                    <td>
-                                                        <div class="progress bg-transparent progress-sm">
-                                                            <div class="progress-bar bg-warning rounded"
-                                                                role="progressbar" style="width: 70%" aria-valuenow="70"
-                                                                aria-valuemin="0" aria-valuemax="100"></div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
+                </div> <!-- container-fluid -->
             </div>
-            <!-- end row -->
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title mb-4">Previous Sessions</h4>
-                            <div class="table-responsive">
-                                <table class="table table-centered table-nowrap mb-0">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th style="width: 20px;">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                        id="customCheck1">
-                                                    <label class="custom-control-label"
-                                                        for="customCheck1">&nbsp;</label>
-                                                </div>
-                                            </th>
-                                            <th>Session ID</th>
-                                            <th>Session Name</th>
-                                            <th>Date</th>
-                                            <th>Total Participants</th>
-
-                                            <th>View Details</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                        id="customCheck2">
-                                                    <label class="custom-control-label"
-                                                        for="customCheck2">&nbsp;</label>
-                                                </div>
-                                            </td>
-                                            <td><a href="javascript: void(0);"
-                                                    class="text-body font-weight-bold">#SK2540</a> </td>
-                                            <td>Python</td>
-                                            <td>
-                                                25 July, 2020
-                                            </td>
-
-                                            <td>
-                                                45
-                                            </td>
-                                            <td>
-                                                <!-- Button trigger modal -->
-                                                <button type="button"
-                                                    class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
-                                                    View Details
-                                                </button>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                        id="customCheck3">
-                                                    <label class="custom-control-label"
-                                                        for="customCheck3">&nbsp;</label>
-                                                </div>
-                                            </td>
-                                            <td><a href="javascript: void(0);"
-                                                    class="text-body font-weight-bold">#SK2541</a> </td>
-                                            <td>javascript</td>
-                                            <td>
-                                                27 July, 2020
-                                            </td>
-
-                                            <td>
-                                                40
-                                            </td>
-                                            <td>
-                                                <!-- Button trigger modal -->
-                                                <button type="button"
-                                                    class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
-                                                    View Details
-                                                </button>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                        id="customCheck4">
-                                                    <label class="custom-control-label"
-                                                        for="customCheck4">&nbsp;</label>
-                                                </div>
-                                            </td>
-                                            <td><a href="javascript: void(0);"
-                                                    class="text-body font-weight-bold">#SK2542</a> </td>
-                                            <td>Oracle</td>
-                                            <td>
-                                                28 July, 2020
-                                            </td>
-                                            <td>
-                                                50
-                                            </td>
-
-                                            <td>
-                                                <!-- Button trigger modal -->
-                                                <button type="button"
-                                                    class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
-                                                    View Details
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                        id="customCheck5">
-                                                    <label class="custom-control-label"
-                                                        for="customCheck5">&nbsp;</label>
-                                                </div>
-                                            </td>
-                                            <td><a href="javascript: void(0);"
-                                                    class="text-body font-weight-bold">#SK2543</a> </td>
-                                            <td>Java</td>
-                                            <td>
-                                                30 July, 2020
-                                            </td>
-                                            <td>
-                                                38
-                                            </td>
-
-                                            <td>
-                                                <!-- Button trigger modal -->
-                                                <button type="button"
-                                                    class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
-                                                    View Details
-                                                </button>
-                                            </td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- end table-responsive -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end row -->
-        </div>
-        <!-- container-fluid -->
-    </div>
-    <!-- End Page-content -->
-
-    <!-- Modal -->
-    <div class="modal fade exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Order Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p class="mb-2">Product id: <span class="text-primary">#SK2540</span></p>
-                    <p class="mb-4">Billing Name: <span class="text-primary">Neal Matthews</span></p>
-
-                    <div class="table-responsive">
-                        <table class="table table-centered table-nowrap">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Product</th>
-                                    <th scope="col">Product Name</th>
-                                    <th scope="col">Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">
-                                        <div>
-                                            <img src="assets/images/product/img-7.png" alt="" class="avatar-sm">
-                                        </div>
-                                    </th>
-                                    <td>
-                                        <div>
-                                            <h5 class="text-truncate font-size-14">Wireless Headphone (Black)
-                                            </h5>
-                                            <p class="text-muted mb-0">$ 225 x 1</p>
-                                        </div>
-                                    </td>
-                                    <td>$ 255</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <div>
-                                            <img src="assets/images/product/img-4.png" alt="" class="avatar-sm">
-                                        </div>
-                                    </th>
-                                    <td>
-                                        <div>
-                                            <h5 class="text-truncate font-size-14">Phone patterned cases</h5>
-                                            <p class="text-muted mb-0">$ 145 x 1</p>
-                                        </div>
-                                    </td>
-                                    <td>$ 145</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <h6 class="m-0 text-right">Sub Total:</h6>
-                                    </td>
-                                    <td>
-                                        $ 400
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <h6 class="m-0 text-right">Shipping:</h6>
-                                    </td>
-                                    <td>
-                                        Free
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <h6 class="m-0 text-right">Total:</h6>
-                                    </td>
-                                    <td>
-                                        $ 400
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
+            <!-- End Page-content -->
         </div>
     </div>
-    <!-- end modal -->
-
-    <footer class="footer">
-        <!-- <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script> © AI-Meet.
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="text-sm-right d-none d-sm-block">
-                                Design & Develop by Themesbrand
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-    </footer>
-    </div>
-    <!-- end main content-->
-
-    </div>
-    <!-- END layout-wrapper -->
-
-    <!-- Right Sidebar -->
-    <div class="right-bar">
-        <div data-simplebar class="h-100">
-            <div class="rightbar-title px-3 py-4">
-                <a href="javascript:void(0);" class="right-bar-toggle float-right">
-                    <i class="mdi mdi-close noti-icon"></i>
-                </a>
-                <h5 class="m-0">Settings</h5>
-            </div>
-
-            <!-- Settings -->
-            <hr class="mt-0" />
-            <h6 class="text-center mb-0">Choose Layouts</h6>
-
-            <div class="p-4">
-                <div class="mb-2">
-                    <img src="assets/images/layouts/layout-1.jpg" class="img-fluid img-thumbnail" alt="">
-                </div>
-                <div class="custom-control custom-switch mb-3">
-                    <input type="checkbox" class="custom-control-input theme-choice" id="light-mode-switch" checked />
-                    <label class="custom-control-label" for="light-mode-switch">Light Mode</label>
-                </div>
-
-                <div class="mb-2">
-                    <img src="assets/images/layouts/layout-2.jpg" class="img-fluid img-thumbnail" alt="">
-                </div>
-                <div class="custom-control custom-switch mb-3">
-                    <input type="checkbox" class="custom-control-input theme-choice" id="dark-mode-switch"
-                        data-bsStyle="assets/css/bootstrap-dark.min.css" data-appStyle="assets/css/app-dark.min.css" />
-                    <label class="custom-control-label" for="dark-mode-switch">Dark Mode</label>
-                </div>
-
-                <div class="mb-2">
-                    <img src="assets/images/layouts/layout-3.jpg" class="img-fluid img-thumbnail" alt="">
-                </div>
-                <div class="custom-control custom-switch mb-5">
-                    <input type="checkbox" class="custom-control-input theme-choice" id="rtl-mode-switch"
-                        data-appStyle="assets/css/app-rtl.min.css" />
-                    <label class="custom-control-label" for="rtl-mode-switch">RTL Mode</label>
-                </div>
 
 
-            </div>
-
-        </div> <!-- end slimscroll-menu-->
-    </div>
-    <!-- /Right-bar -->
 
     <!-- Right bar overlay-->
     <div class="rightbar-overlay"></div>
@@ -1547,22 +1049,13 @@
     <script src="assets/libs/metismenu/metisMenu.min.js"></script>
     <script src="assets/libs/simplebar/simplebar.min.js"></script>
     <script src="assets/libs/node-waves/waves.min.js"></script>
+    <!-- toastr plugin -->
+    <script src="assets/libs/toastr/build/toastr.min.js"></script>
 
-    <!-- apexcharts -->
-    <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+    <!-- toastr init -->
+    <script src="assets/js/pages/toastr.init.js"></script>
 
-    <script src="assets/js/pages/dashboard.init.js"></script>
-
-    <!-- App js -->
     <script src="assets/js/app.js"></script>
-    <!-- Right bar overlay-->
-    <div class="rightbar-overlay"></div>
-
-    <!-- apexcharts -->
-    <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
-
-    <!-- apexcharts init -->
-    <script src="assets/js/pages/apexcharts.init.js"></script>
 
 </body>
 
